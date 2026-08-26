@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════════
+   SAULGPT — UrgencyBanner.css
+   Pulsing red alert for legal deadlines
+   ═══════════════════════════════════════════════════════ */
+
+.urgency-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+/* Warning level — amber/gold */
+.urgency-banner.warning {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(139, 119, 42, 0.05));
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-left: 4px solid var(--gold);
+}
+
+/* Critical level — red pulse */
+.urgency-banner.critical {
+  background: linear-gradient(135deg, rgba(196, 74, 74, 0.12), rgba(74, 42, 42, 0.08));
+  border: 1px solid rgba(196, 74, 74, 0.45);
+  border-left: 4px solid var(--accent-red);
+  animation: urgencyPulse 2s ease-in-out infinite;
+}
+
+@keyframes urgencyPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(196, 74, 74, 0.2),
+                inset 0 0 20px rgba(196, 74, 74, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(196, 74, 74, 0.4),
+                inset 0 0 40px rgba(196, 74, 74, 0.12);
+  }
+}
+
+.urgency-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.urgency-banner.critical .urgency-icon {
+  animation: iconPulse 1s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.1); opacity: 0.9; }
+}
+
+.urgency-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.urgency-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--parchment);
+}
+
+.urgency-banner.critical .urgency-title {
+  color: var(--accent-red);
+  text-shadow: 0 0 8px rgba(196, 74, 74, 0.5);
+}
+
+.urgency-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+.urgency-text strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.urgency-banner.critical .urgency-text strong {
+  color: var(--accent-red);
+}
+
+.urgency-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold-dim);
+  margin-top: 2px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--border-dim);
+}
+
+.urgency-banner.critical .urgency-date {
+  color: var(--accent-red);
+  border-top-color: rgba(196, 74, 74, 0.3);
+}
+
+/* Pulsing background effect */
+.urgency-pulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    rgba(196, 74, 74, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.urgency-banner.critical .urgency-pulse {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 0.5; }
+}
+
+@media (max-width: 640px) {
+  .urgency-banner {
+    padding: 12px 12px;
+    gap: 10px;
+  }
+  .urgency-text {
+    font-size: 13px;
+  }
+}

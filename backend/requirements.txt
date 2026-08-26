@@ -1,0 +1,46 @@
+# SaulGPT Backend Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web framework
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Web scraping / search
+requests==2.31.0
+beautifulsoup4==4.12.2
+lxml==4.9.3
+duckduckgo-search==3.9.8
+
+# ML/AI
+sentence-transformers==2.2.2
+# Python 3.12-compatible ChromaDB release; 0.4.x builds chroma-hnswlib natively
+# and fails on Windows without the MSVC build tools.
+chromadb==0.5.23
+spacy==3.7.2
+langdetect==1.0.9
+langchain==0.0.350
+langchain-groq==0.0.1
+langchain-core==0.1.10
+networkx==3.2.1
+rank-bm25==0.2.2
+tqdm==4.66.1
+
+# Document processing
+PyMuPDF==1.23.8
+python-docx==1.1.0
+
+# Scheduling
+apscheduler==3.10.4
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Authentication
+passlib==1.7.4
+bcrypt==4.0.1
+python-jose[cryptography]==3.3.0
+
+# NLP model
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl

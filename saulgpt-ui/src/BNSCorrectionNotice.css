@@ -1,0 +1,160 @@
+/* ═══════════════════════════════════════════════════════
+   SAULGPT — BNSCorrectionNotice.css
+   Legislation update notice for BNS/BNSS/BSA 2023
+   ═══════════════════════════════════════════════════════ */
+
+.bns-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(168, 196, 154, 0.06), rgba(14, 42, 28, 0.05));
+  border: 1px solid rgba(168, 196, 154, 0.3);
+  border-radius: var(--radius-md);
+  margin: 12px 0;
+  border-left: 4px solid var(--accent-sage);
+}
+
+.bns-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bns-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.bns-title {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+  text-shadow: 0 0 8px rgba(168, 196, 154, 0.3);
+}
+
+.bns-subtitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+.bns-subtitle strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Mappings container */
+.bns-mappings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Individual mapping card */
+.bns-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: rgba(10, 8, 6, 0.5);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s;
+}
+
+.bns-card:hover {
+  border-color: var(--accent-sage);
+}
+
+/* Old → New row */
+.bns-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bns-old {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: rgba(196, 74, 74, 0.08);
+  border: 1px dashed rgba(196, 74, 74, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.bns-old-icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.bns-old-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-red);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.bns-arrow {
+  font-size: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.bns-new {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: rgba(168, 196, 154, 0.1);
+  border: 1px solid rgba(168, 196, 154, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.bns-new-icon {
+  font-size: 12px;
+}
+
+.bns-new-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-sage);
+  font-weight: 600;
+}
+
+/* Note below each mapping */
+.bns-note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  padding-left: 10px;
+}
+
+/* Disclaimer footer */
+.bns-disclaimer {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-dim);
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .bns-notice {
+    padding: 14px 14px;
+  }
+  .bns-row {
+    flex-wrap: wrap;
+  }
+  .bns-card {
+    padding: 10px 12px;
+  }
+}

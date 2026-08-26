@@ -1,0 +1,145 @@
+{
+  "title": "INDIAN PENAL CODE, 1860",
+  "preamble": "WHEREAS it is expedient to provide a general Penal Code for India; It is enacted as follows:",
+  "chapters": [
+    {
+      "name": "CHAPTER I - INTRODUCTION",
+      "sections": [
+        {
+          "number": 1,
+          "title": "Title and extent of operation of the Code",
+          "content": "This Act shall be called the Indian Penal Code, and shall extend to the whole of India except the State of Jammu and Kashmir."
+        },
+        {
+          "number": 2,
+          "title": "Punishment of offences committed within India",
+          "content": "Every person shall be liable to punishment under this Code and not otherwise for every act or omission contrary to the provisions thereof, of which he shall be guilty within India."
+        }
+      ]
+    },
+    {
+      "name": "CHAPTER II - GENERAL EXPLANATIONS",
+      "sections": [
+        {
+          "number": 6,
+          "title": "Definitions in the Code to be understood subject to exceptions",
+          "content": "Throughout this Code every definition of an offence, every penal provision, and every illustration of every such definition or penal provision, shall be understood subject to the exceptions contained in the chapter entitled \"General Exceptions,\" though those exceptions are not repeated in such definition, penal provision, or illustration."
+        }
+      ]
+    },
+    {
+      "name": "CHAPTER IV - OF OFFENCES AGAINST THE HUMAN BODY",
+      "sections": [
+        {
+          "number": 300,
+          "title": "Murder",
+          "content": "Except in the cases hereinafter excepted, culpable homicide is murder, if the act by which the death is caused is done with the intention of causing death, or—\n(a) if it is done with the intention of causing such bodily injury as the offender knows to be likely to cause the death of the person to whom the harm is caused, or;\n(b) if it is done with the intention of causing bodily injury to any person and the bodily injury intended to be inflicted is sufficient in the ordinary course of nature to cause death, or;\n(c) if the person committing the act knows that it is so imminently dangerous that it must, in all probability, cause death or such bodily injury as is likely to cause death, and commits such act without any excuse for incurring the risk of causing death or such injury as aforesaid."
+        },
+        {
+          "number": 302,
+          "title": "Punishment for murder",
+          "content": "Whoever commits murder shall be punished with death, or imprisonment for life, and shall also be liable to fine."
+        },
+        {
+          "number": 304,
+          "title": "Punishment for culpable homicide not amounting to murder",
+          "content": "Whoever commits culpable homicide not amounting to murder shall be punished with imprisonment for life, or imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine; if the act by which the death is caused is done with the intention of causing death, or of causing such bodily injury as is likely to cause death."
+        },
+        {
+          "number": 307,
+          "title": "Attempt to murder",
+          "content": "Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder, shall be punished with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine; and if hurt is caused to any person by such act, the offender shall be liable either to imprisonment for life, or to such punishment as is hereinbefore mentioned."
+        },
+        {
+          "number": 320,
+          "title": "Grievous hurt",
+          "content": "The following kinds of hurt only are designated as \"grievous\":\n(a) Emasculation.\n(b) Permanent privation of the sight of either eye.\n(c) Permanent privation of the hearing of either ear.\n(d) Privation of any member or joint.\n(e) Destruction or permanent impairing of the powers of any member or joint.\n(f) Permanent disfiguration of the head or face.\n(g) Fracture or dislocation of a bone or tooth.\n(h) Any hurt which endangers life or which causes the sufferer to be during the space of twenty days in severe bodily pain, or unable to follow his ordinary pursuits."
+        },
+        {
+          "number": 323,
+          "title": "Punishment for voluntarily causing hurt",
+          "content": "Whoever, except in the case provided for by section 334, voluntarily causes hurt, shall be punished with imprisonment of either description for a term which may extend to one year, or with fine which may extend to one thousand rupees, or with both."
+        },
+        {
+          "number": 325,
+          "title": "Punishment for voluntarily causing grievous hurt",
+          "content": "Whoever, except in the case provided for by section 335, voluntarily causes grievous hurt, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine."
+        }
+      ]
+    },
+    {
+      "name": "CHAPTER XVI - OF OFFENCES AFFECTING THE HUMAN BODY",
+      "sections": [
+        {
+          "number": 375,
+          "title": "Rape",
+          "content": "A man is said to commit \"rape\" if he—\n(a) penetrates his penis, to any extent, into the vagina, mouth, urethra or anus of a woman or makes her to do so with him or any other person; or\n(b) inserts, to any extent, any object or a part of the body, not being the penis, into the vagina, the urethra or anus of a woman or makes her to do so with him or any other person; or\n(c) manipulates any part of the body of a woman so as to cause penetration into the vagina, urethra, anus or any part of body of such woman or makes her to do so with him or any other person; or\n(d) applies his mouth to the vagina, anus, urethra of a woman or makes her to do so with him or any other person,\nunder the circumstances falling under any of the following seven descriptions:\n(i) Against her will.\n(ii) Without her consent.\n(iii) With her consent, when her consent has been obtained by putting her or any person in whom she is interested, in fear of death or of hurt.\n(iv) With her consent, when the man knows that he is not her husband, and that her consent is given because she believes that he is another man to whom she is or believes herself to be lawfully married.\n(v) With her consent, when, at the time of giving such consent, by reason of unsoundness of mind or intoxication or the administration by him personally or through another of any stupefying or unwholesome substance, she is unable to understand the nature and consequences of that to which she gives consent.\n(vi) With or without her consent, when she is under sixteen years of age."
+        },
+        {
+          "number": 376,
+          "title": "Punishment for rape",
+          "content": "(1) Whoever, except in the cases provided for by sub-section (2), commits rape shall be punished with imprisonment of either description for a term which shall not be less than seven years but which may be for life or for a term which may extend to ten years and shall also be liable to fine unless the woman raped is his own wife and is not under twelve years of age, in which case, he shall be punished with imprisonment of either description for a term which may extend to two years or with fine or with both."
+        }
+      ]
+    },
+    {
+      "name": "CHAPTER XVII - OF OFFENCES AGAINST PROPERTY",
+      "sections": [
+        {
+          "number": 378,
+          "title": "Theft",
+          "content": "Whoever, intending to take dishonestly any moveable property out of the possession of any person without that person's consent, moves that property in order to such taking, is said to commit theft."
+        },
+        {
+          "number": 379,
+          "title": "Punishment for theft",
+          "content": "Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both."
+        },
+        {
+          "number": 380,
+          "title": "Theft in dwelling house, etc.",
+          "content": "Whoever commits theft in any building, tent or vessel, which building, tent or vessel is used as a human dwelling, or used for the custody of property, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine."
+        },
+        {
+          "number": 420,
+          "title": "Cheating and dishonestly inducing delivery of property",
+          "content": "Whoever cheats and thereby dishonestly induces the person deceived to deliver any property to any person, or to make, alter or destroy the whole or any part of a valuable security, or anything which is signed or sealed, and which is capable of being converted into a valuable security, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine."
+        }
+      ]
+    }
+  ],
+  "constitution_articles": [
+    {
+      "number": 14,
+      "title": "Equality before law",
+      "content": "The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India."
+    },
+    {
+      "number": 19,
+      "title": "Protection of certain rights regarding freedom of speech, etc.",
+      "content": "(1) All citizens shall have the right—\n(a) to freedom of speech and expression;\n(b) to assemble peaceably and without arms;\n(c) to form associations or unions;\n(d) to move freely throughout the territory of India;\n(e) to reside and settle in any part of the territory of India;\n(f) to practice any profession, or to carry on any occupation, trade or business."
+    },
+    {
+      "number": 21,
+      "title": "Protection of life and personal liberty",
+      "content": "No person shall be deprived of his life or personal liberty except according to procedure established by law."
+    },
+    {
+      "number": 32,
+      "title": "Remedies for enforcement of rights conferred by this Part",
+      "content": "(1) The right to move the Supreme Court by appropriate proceedings for the enforcement of the rights conferred by this Part is guaranteed.\n(2) The Supreme Court shall have power to issue directions or orders or writs, including writs in the nature of habeas corpus, mandamus, prohibition, quo warranto and certiorari, whichever may be appropriate, for the enforcement of any of the rights conferred by this Part."
+    }
+  ],
+  "criminal_procedure_code": [
+    {
+      "number": 41,
+      "title": "When police may arrest without warrant",
+      "content": "(1) Any police officer may without an order from a Magistrate and without a warrant, arrest any person—\n(a) who commits, in the presence of a police officer, a cognizable offence;\n(b) against whom a reasonable complaint has been made, or credible information has been received, or a reasonable suspicion exists that he has committed a cognizable offence punishable with imprisonment for a term which may extend to seven years whether with or without fine or with both."
+    },
+    {
+      "number": 154,
+      "title": "Information in cognizable cases",
+      "content": "(1) Every information relating to the commission of a cognizable offence, if given orally to an officer in charge of a police station, shall be reduced to writing by him or under his direction, and be read over to the informant; and every such information, whether given in writing or reduced to writing as aforesaid, shall be signed by the person giving it, and the substance thereof shall be entered in a book to be kept by such officer in such form as the State Government may prescribe in this behalf."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+saulgpt-ui/node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Database
+*.sqlite3
+*.db
+
+# Vector DB (chroma)
+data/vector_db/
+
+# AI assistant
+.claude/
+.mcp.json
+
+# Logs
+*.log
+backend/server.err
+backend/server.log
+server_log*.txt
+backend/server_log*.txt
+backend/server_err*.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test payloads
+test_draft*.json
+test_payload*.json
+test_scrutiny*.json
