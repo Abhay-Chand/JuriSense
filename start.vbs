@@ -1,4 +1,4 @@
-' SaulGPT Launcher - Uses virtual environment Python
+' JuriSense Launcher - Uses virtual environment Python
 Set WshShell = CreateObject("WScript.Shell")
 
 scriptPath = Replace(WScript.ScriptFullName, "start.vbs", "")
@@ -9,7 +9,7 @@ WshShell.Run "cmd /k " & scriptPath & ".venv\Scripts\python.exe api_server.py", 
 WScript.Sleep 4000
 
 ' Start frontend
-WshShell.CurrentDirectory = scriptPath & "saulgpt-ui"
+WshShell.CurrentDirectory = scriptPath & "jurisense-ui"
 WshShell.Run "cmd /k npm run dev", 1, False
 WScript.Sleep 3000
 

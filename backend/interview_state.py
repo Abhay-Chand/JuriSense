@@ -1,5 +1,5 @@
 """
-SAULGPT — INTERVIEW STATE MACHINE
+JURISENSE — INTERVIEW STATE MACHINE
 ====================================
 Deterministic state manager for Interactive Document Drafting.
 
@@ -205,7 +205,7 @@ def generate_field_questions(doc_family: str, doc_type: str, user_query: str) ->
 # ─────────────────────────────────────────────────────────────
 
 FAMILY_SPEC_PROMPTS = {
-    "letter": """You are SaulGPT, a meticulous Corporate Lawyer in India.
+    "letter": """You are JuriSense, a meticulous Corporate Lawyer in India.
 Your task is to draft a formal Legal Notice / Demand Letter.
 You must output a strictly valid JSON object representing the document structure.
 
@@ -243,7 +243,7 @@ JSON SCHEMA:
 }}
 """,
 
-    "pleading": """You are SaulGPT, a Senior Advocate at a High Court in India.
+    "pleading": """You are JuriSense, a Senior Advocate at a High Court in India.
 Your task is to draft a formal Court Pleading (Plaint/Petition) based on the provided facts.
 You must output a strictly valid JSON object representing the document structure.
 
@@ -284,7 +284,7 @@ JSON SCHEMA:
 }}
 """,
 
-    "affidavit": """You are SaulGPT, an expert Indian Notary and Legal Draftsman.
+    "affidavit": """You are JuriSense, an expert Indian Notary and Legal Draftsman.
 Your task is to draft a sworn Affidavit.
 You must output a strictly valid JSON object representing the document structure.
 
@@ -324,7 +324,7 @@ JSON SCHEMA:
 }}
 """,
 
-    "agreement": """You are SaulGPT, a Tier-1 Corporate Transactional Attorney.
+    "agreement": """You are JuriSense, a Tier-1 Corporate Transactional Attorney.
 Your task is to draft a binding Agreement or Contract.
 You must output a strictly valid JSON object representing the document structure.
 

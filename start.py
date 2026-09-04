@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SaulGPT Single-Launcher
+JuriSense Single-Launcher
  Starts backend + frontend with one click and opens browser
 """
 
@@ -47,7 +47,7 @@ def start_backend():
 
 def start_frontend():
     log("[2/2] Starting Frontend...", YELLOW)
-    os.chdir(os.path.join(os.path.dirname(__file__), 'saulgpt-ui'))
+    os.chdir(os.path.join(os.path.dirname(__file__), 'jurisense-ui'))
     subprocess.Popen(
         ['npm', 'run', 'dev'],
         creationflags=subprocess.CREATE_NEW_CONSOLE if sys.platform == 'win32' else 0
@@ -57,7 +57,7 @@ def main():
     os.chdir(os.path.dirname(__file__))
     
     print("\n" + "="*50)
-    print("  SaulGPT - Starting All Services")
+    print("  JuriSense - Starting All Services")
     print("="*50 + "\n")
 
     # Start backend
@@ -90,7 +90,7 @@ def main():
     webbrowser.open('http://localhost:5173')
 
     print("\n" + "="*50)
-    print("  SaulGPT is running!")
+    print("  JuriSense is running!")
     print("="*50)
     print("\n  Backend API:  http://localhost:8000")
     print("  Frontend:     http://localhost:5173")

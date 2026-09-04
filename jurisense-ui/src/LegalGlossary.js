@@ -1,5 +1,5 @@
 /**
- * SAULGPT — LEGAL GLOSSARY
+ * JURISENSE — LEGAL GLOSSARY
  * ===========================
  * 200+ Indian legal terms with plain-language definitions.
  * Used by the LegalTermsSidebar component.

@@ -1,9 +1,9 @@
 @echo off
-title SaulGPT - Indian Legal Intelligence
+title JuriSense - Indian Legal Intelligence
 color 0a
 
 echo ═══════════════════════════════════════════
-echo   SaulGPT - Starting All Services
+echo   JuriSense - Starting All Services
 echo ═══════════════════════════════════════════
 echo.
 
@@ -25,9 +25,9 @@ if not exist "backend\__pycache__" (
 )
 
 REM Check frontend dependencies
-if not exist "saulgpt-ui\node_modules" (
+if not exist "jurisense-ui\node_modules" (
     echo [3/3] Installing frontend dependencies...
-    cd saulgpt-ui
+    cd jurisense-ui
     npm install
     cd ..
 )
@@ -37,16 +37,16 @@ echo Starting services...
 echo.
 
 REM Start backend in background
-start "SaulGPT - Backend" cmd /k "cd backend && python api_server.py"
+start "JuriSense - Backend" cmd /k "cd backend && python api_server.py"
 
 REM Wait a moment for backend to start
 timeout /t 3 /nobreak >nul
 
 REM Start frontend
-start "SaulGPT - Frontend" cmd /k "cd saulgpt-ui && npm run dev"
+start "JuriSense - Frontend" cmd /k "cd jurisense-ui && npm run dev"
 
 echo ═══════════════════════════════════════════
-echo   SaulGPT is running!
+echo   JuriSense is running!
 echo.
 echo   Backend API:  http://localhost:8000
 echo   Frontend:    http://localhost:5173

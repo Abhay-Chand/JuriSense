@@ -1,1 +1,1 @@
-# Package initialization for SaulGPT legal scraper.
+# Package initialization for JuriSense legal scraper.

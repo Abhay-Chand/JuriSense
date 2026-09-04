@@ -548,7 +548,7 @@ export default function App() {
       }
       const msg = err.response
         ? `Server error ${err.response.status}${detail ? `: ${detail}` : ""}`
-        : "Cannot connect to SaulGPT API. Is api_server.py running?";
+        : "Cannot connect to JuriSense API. Is api_server.py running?";
       setMessages(prev => [...prev, { role: "assistant", content: `🚨 ${msg}` }]);
       setInterviewActive(false);
     } finally {
@@ -682,7 +682,7 @@ export default function App() {
                 <div className="seal-ring" />
               </div>
               <div className="logo-text">
-                <h1>SaulGPT</h1>
+                <h1>JuriSense</h1>
                 <p>Indian Legal Intelligence</p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 /**
- * SAULGPT — usePDF.js
+ * JURISENSE — usePDF.js
  * ================================
  * Masterclass legal PDF generation engine.
  *
@@ -10,7 +10,7 @@
  * → Only works for document mode
  *
  * What this does instead:
- * → Full SaulGPT letterhead + gold dividers
+ * → Full JuriSense letterhead + gold dividers
  * → Section-aware rendering (FACTS / LAW / OUTCOME / Steps)
  * → Auto page breaks with continuation headers
  * → Footer: disclaimer + page numbers + generation timestamp
@@ -87,7 +87,7 @@ function docTypeLabel(meta) {
 function safeFilename(meta) {
   const label = docTypeLabel(meta).replace(/\s+/g, "_");
   const date  = new Date().toISOString().slice(0, 10);
-  return `SaulGPT_${label}_${date}.pdf`;
+  return `JuriSense_${label}_${date}.pdf`;
 }
 
 // ════════════════════════════════════════════════════════════
@@ -126,7 +126,7 @@ export function downloadAsPDF(rawContent, meta = {}) {
       tc(C.goldDim);
       doc.setFont("times", "italic");
       doc.setFontSize(8);
-      doc.text(`SaulGPT — ${docType} (continued)`, ML, y);
+      doc.text(`JuriSense — ${docType} (continued)`, ML, y);
       doc.text(dateStr, PW - MR, y, { align: "right" });
       y += 3;
       rule(y, C.goldDim, 0.15);
@@ -140,7 +140,7 @@ export function downloadAsPDF(rawContent, meta = {}) {
   tc(C.gold);
   doc.setFont("times", "bold");
   doc.setFontSize(20);
-  doc.text("SaulGPT", PW / 2, y, { align: "center" });
+  doc.text("JuriSense", PW / 2, y, { align: "center" });
   y += 6;
 
   // Tagline
@@ -377,7 +377,7 @@ export function downloadAsPDF(rawContent, meta = {}) {
     doc.setFont("times", "normal");
     doc.setFontSize(8);
     doc.text(
-      `SaulGPT  ·  Page ${p} of ${totalPages}`,
+      `JuriSense  ·  Page ${p} of ${totalPages}`,
       PW / 2, fy + 4, { align: "center" }
     );
   }

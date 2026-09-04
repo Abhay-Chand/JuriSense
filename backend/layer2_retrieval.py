@@ -1,5 +1,5 @@
 """
-SAULGPT — LAYER 2: HYBRID RETRIEVAL
+JURISENSE — LAYER 2: HYBRID RETRIEVAL
 ======================================
 Techniques:
 1. Semantic Search      — ChromaDB (all-MiniLM-L6-v2)
@@ -362,7 +362,7 @@ if __name__ == "__main__":
     }
 
     print("-" * 55)
-    print("SaulGPT — Layer 2 Hybrid Retrieval Test")
+    print("JuriSense — Layer 2 Hybrid Retrieval Test")
     print("-" * 55)
 
     results = retrieve_with_hybrid_logic(test_payload)

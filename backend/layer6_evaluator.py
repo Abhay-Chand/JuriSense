@@ -1,5 +1,5 @@
 """
-SAULGPT — LAYER 6: CONTRACT EVALUATOR
+JURISENSE — LAYER 6: CONTRACT EVALUATOR
 ========================================
 The "Red Pen" — evaluates uploaded legal documents for:
 → Critical flaws and missing clauses
@@ -445,7 +445,7 @@ def evaluate_contract(file_bytes: bytes, filename: str) -> dict:
 def format_evaluation_response(evaluation: dict) -> str:
     """
     Formats the evaluation dict into a rich markdown string
-    for display in the SaulGPT chat interface.
+    for display in the JuriSense chat interface.
 
     Args:
         evaluation: result from evaluate_contract()
@@ -516,7 +516,7 @@ def format_evaluation_response(evaluation: dict) -> str:
 
 if __name__ == "__main__":
     print("-" * 55)
-    print("SaulGPT — Layer 6 Contract Evaluator Test")
+    print("JuriSense — Layer 6 Contract Evaluator Test")
     print("-" * 55)
 
     # Test with a sample contract text

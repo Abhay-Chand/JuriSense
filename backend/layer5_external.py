@@ -266,7 +266,7 @@ def fallback_web_search(query: str) -> list:
     1. Layer 2 returns zero results AND
     2. Knowledge Graph found no relationships
 
-    This guarantees SaulGPT always finds an answer
+    This guarantees JuriSense always finds an answer
     even if local database is incomplete.
 
     Args:
@@ -491,7 +491,7 @@ def start_auto_updater():
 if __name__ == "__main__":
 
     print("-" * 55)
-    print("SaulGPT — Layer 5 External Tools Test")
+    print("JuriSense — Layer 5 External Tools Test")
     print("-" * 55)
 
     # Test IndiaKanoon fetcher

@@ -1,5 +1,5 @@
 """
-Centralized constants for the SaulGPT scraper.
+Centralized constants for the JuriSense scraper.
 """
 
 HEADERS = {

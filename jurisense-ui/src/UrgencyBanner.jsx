@@ -1,5 +1,5 @@
 /**
- * SAULGPT — UrgencyBanner
+ * JURISENSE — UrgencyBanner
  * =========================
  * Pulsing red alert banner for legal deadlines and urgency flags.
  *

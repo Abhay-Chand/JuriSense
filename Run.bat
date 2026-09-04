@@ -1,15 +1,15 @@
 @echo off
-title SaulGPT
+title JuriSense
 color 0a
 chcp 65001 >nul
 set PYTHONIOENCODING=utf-8
 rem GROQ_API_KEY is loaded from .env file in the project root by python-dotenv
 
 echo ===============================================
-echo        SAULGPT - LEGAL INTELLIGENCE
+echo        JURISENSE - LEGAL INTELLIGENCE
 echo ===============================================
 echo.
-echo  [1] Start SaulGPT
+echo  [1] Start JuriSense
 echo  [2] Setup (first time only)
 echo  [3] Exit
 echo.
@@ -23,10 +23,10 @@ if errorlevel 1 goto start
 echo Starting Backend...
 set "VENV_PYTHON=%~dp0.venv\Scripts\python.exe"
 set "BACKEND_DIR=%~dp0backend"
-start "SaulGPT-Backend" cmd /k ""%VENV_PYTHON%" "%BACKEND_DIR%\api_server.py""
+start "JuriSense-Backend" cmd /k ""%VENV_PYTHON%" "%BACKEND_DIR%\api_server.py""
 timeout /t 4 /nobreak >nul
 echo Starting Frontend...
-start "SaulGPT-Frontend" cmd /k "cd /d %~dp0saulgpt-ui && npm run dev"
+start "JuriSense-Frontend" cmd /k "cd /d %~dp0jurisense-ui && npm run dev"
 timeout /t 3 /nobreak >nul
 start http://localhost:5173
 echo.
@@ -38,7 +38,7 @@ goto :eof
 :setup
 echo Installing dependencies...
 "%~dp0.venv\Scripts\pip.exe" install -r "%~dp0backend\requirements.txt"
-cd /d %~dp0saulgpt-ui
+cd /d %~dp0jurisense-ui
 call npm install
 cd /d %~dp0
 echo Setup complete!

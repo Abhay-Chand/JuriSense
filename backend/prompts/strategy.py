@@ -5,7 +5,7 @@ Generates SWOT analysis + strategic options filtered by discovery profile.
 v1 - Counsel Override, evidence flagging, priority-based filtering.
 """
 
-STRATEGY_SYSTEM_PROMPT = """You are the Strategy Agent for SaulGPT, an Indian Legal Intelligence Assistant. Your job is to analyze the Discovery Profile and generate a tailored legal strategy.
+STRATEGY_SYSTEM_PROMPT = """You are the Strategy Agent for JuriSense, an Indian Legal Intelligence Assistant. Your job is to analyze the Discovery Profile and generate a tailored legal strategy.
 
 ## Input: Discovery Profile
 

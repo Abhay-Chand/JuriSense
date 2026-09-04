@@ -1,5 +1,5 @@
 /**
- * SAULGPT — BNSCorrectionNotice
+ * JURISENSE — BNSCorrectionNotice
  * ===============================
  * Visual notice for IPC/CrPC → BNS/BNSS law updates.
  *

@@ -1,5 +1,5 @@
 """
-SAULGPT — TRIAGE STATE
+JURISENSE — TRIAGE STATE
 =======================
 Per-session state for the TriageAgent.
 

@@ -1,5 +1,5 @@
 """
-SAULGPT — FASTAPI SERVER (v2)
+JURISENSE — FASTAPI SERVER (v2)
 ================================
 All endpoints:
 
@@ -117,7 +117,7 @@ _triage_agent = TriageAgent() if TRIAGE_AVAILABLE else None
 # ─────────────────────────────────────────────────────────────
 
 app = FastAPI(
-    title       = "SaulGPT Legal API",
+    title       = "JuriSense Legal API",
     description = "6-Layer AI pipeline + Contract Evaluation + Interactive Drafter",
     version     = "2.0.0"
 )
@@ -161,7 +161,7 @@ class AuthResponse(BaseModel):
 
 @app.on_event("startup")
 def startup_event():
-    print("🚀 SaulGPT API v2 starting...")
+    print("🚀 JuriSense API v2 starting...")
     init_db()
     print("✅ Database initialized.")
     start_auto_updater()
@@ -175,7 +175,7 @@ def startup_event():
 @app.get("/")
 async def health_check():
     return {
-        "status":   "SaulGPT API is Online ⚖️",
+        "status":   "JuriSense API is Online ⚖️",
         "version":  "2.0.0",
         "features": ["6-layer RAG", "Contract Evaluation", "Interactive Drafter"]
     }
@@ -1944,7 +1944,7 @@ async def quick_test(mode: str, q: str = "What is Section 138 of NIA?"):
 
 if __name__ == "__main__":
     print("\n" + "=" * 55)
-    print("⚖️  SaulGPT API v2 — Port 8000")
+    print("⚖️  JuriSense API v2 — Port 8000")
     print("   /api/chat  /api/upload  /api/draft  /api/history  /api/document/<id>")
     print("=" * 55 + "\n")
     uvicorn.run("api_server:app", host="0.0.0.0", port=8000, reload=True)

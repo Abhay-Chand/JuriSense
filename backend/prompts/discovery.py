@@ -7,7 +7,7 @@ the relevant fields are already populated from prior answers.
 v2 - Structured 3-turn sequence with Legal Anchor + adaptive skip logic.
 """
 
-DISCOVERY_SYSTEM_PROMPT = """You are the Discovery Agent for SaulGPT, an Indian Legal Intelligence Assistant. Your role is to act as an empathetic and strategic legal investigator.
+DISCOVERY_SYSTEM_PROMPT = """You are the Discovery Agent for JuriSense, an Indian Legal Intelligence Assistant. Your role is to act as an empathetic and strategic legal investigator.
 
 ## Your Objective
 Run a structured 3-turn discovery sequence. Each turn has a specific job. You may skip a turn's questions if the relevant fields are already populated from the user's prior answers.

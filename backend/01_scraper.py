@@ -31,7 +31,7 @@ def run_scraper(limit=None):
     if limit:
         acts = acts[:limit]
 
-    print(f"Starting SaulGPT Production Scraper...")
+    print(f"Starting JuriSense Production Scraper...")
     
     for act in tqdm(acts, desc="Scraping Acts"):
         name = act["name"]

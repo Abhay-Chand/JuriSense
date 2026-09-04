@@ -43,7 +43,7 @@ export default function AuthPage({ onAuth, migrating }) {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-seal">⚖</div>
-        <h1 className="auth-title">SaulGPT</h1>
+        <h1 className="auth-title">JuriSense</h1>
         <p className="auth-sub">Indian Legal Intelligence</p>
 
         <div className="auth-tabs">

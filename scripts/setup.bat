@@ -1,9 +1,9 @@
 @echo off
-title SaulGPT Setup
+title JuriSense Setup
 color 0a
 
 echo ═══════════════════════════════════════════
-echo   SaulGPT - One-Time Setup
+echo   JuriSense - One-Time Setup
 echo ═══════════════════════════════════════════
 echo.
 
@@ -20,7 +20,7 @@ call .venv\Scripts\pip.exe install -r "backend\requirements.txt"
 
 echo.
 echo   Installing Node packages...
-cd saulgpt-ui
+cd jurisense-ui
 call npm install
 cd ..
 
@@ -29,6 +29,6 @@ echo ═════════════════════════
 echo   Setup complete!
 echo ═══════════════════════════════════════════
 echo.
-echo   Run 'scripts\start.bat' to launch SaulGPT
+echo   Run 'scripts\start.bat' to launch JuriSense
 echo.
 pause

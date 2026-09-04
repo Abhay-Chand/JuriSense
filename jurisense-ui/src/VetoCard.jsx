@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./VetoCard.css";
 
 export default function VetoCard({ scrutiny, onAcknowledge, onAction, logEvent }) {
   const [acknowledged, setAcknowledged] = useState(false);

@@ -1,5 +1,5 @@
 """
-SaulGPT — Database Layer
+JuriSense — Database Layer
 ========================
 SQLite-backed persistence for users, conversations, and messages.
 Replaces in-memory CONVERSATION_MEMORY for authenticated users.

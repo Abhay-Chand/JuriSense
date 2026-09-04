@@ -1,5 +1,5 @@
 """
-SAULGPT — SCRUTINY AGENT
+JURISENSE — SCRUTINY AGENT
 ==========================
 Pre-flight legal validation layer that runs BEFORE document
 drafting begins. Acts as a senior advocate reviewing the matter
@@ -593,7 +593,7 @@ def scrutinize(
 
 if __name__ == "__main__":
     print("-" * 60)
-    print("SaulGPT — Scrutiny Agent Test")
+    print("JuriSense — Scrutiny Agent Test")
     print("-" * 60)
 
     tests = [

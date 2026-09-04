@@ -503,7 +503,7 @@ except Exception as e:
 if __name__ == "__main__":
 
     print("-" * 55)
-    print("SaulGPT — Layer 6 Knowledge Graph Test")
+    print("JuriSense — Layer 6 Knowledge Graph Test")
     print("-" * 55)
 
     # Test 1 — Murder case

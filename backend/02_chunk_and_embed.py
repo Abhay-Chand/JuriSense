@@ -1,5 +1,5 @@
 """
-SaulGPT Legal RAG Pipeline - Module 2: Chunk and Embed
+JuriSense Legal RAG Pipeline - Module 2: Chunk and Embed
 
 Reads all scraped JSON files from raw_data/
 Chunks each section intelligently

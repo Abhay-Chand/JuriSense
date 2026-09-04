@@ -1,8 +1,8 @@
-﻿# SaulGPT — Complete Feature Architecture
+# JuriSense — Complete Feature Architecture
 
 ## Project Overview
 
-SaulGPT is an AI-powered Indian Legal Intelligence Assistant using a 6-layer RAG pipeline to answer legal queries, draft documents, evaluate contracts, and provide structured legal analysis. It uses a 3-phase "Virtual Counsel" flow (Discovery → Strategy → Execution) for legal grievance handling with Llama 3.1 8B via Groq.
+JuriSense is an AI-powered Indian Legal Intelligence Assistant using a 6-layer RAG pipeline to answer legal queries, draft documents, evaluate contracts, and provide structured legal analysis. It uses a 3-phase "Virtual Counsel" flow (Discovery → Strategy → Execution) for legal grievance handling with Llama 3.1 8B via Groq.
 
 ---
 
@@ -314,7 +314,7 @@ Structured legal analysis for law students/advocates. Never invoked as hidden fa
 
 ### 2.1 Core Chat Interface
 
-**Source:** saulgpt-ui/src/App.jsx (935 lines)
+**Source:** jurisense-ui/src/App.jsx (935 lines)
 
 **19 State Variables:**
 - Auth: token, user, authLoading
@@ -411,7 +411,7 @@ Each widget conditionally renders based on response metadata:
 
 ### 2.5 Conversation Management
 
-**Source:** saulgpt-ui/src/ConversationsSidebar.jsx (87 lines)
+**Source:** jurisense-ui/src/ConversationsSidebar.jsx (87 lines)
 
 - Left panel (260px) with mobile backdrop overlay
 - Header: "Chats (N)" + New (+) + Close (X)

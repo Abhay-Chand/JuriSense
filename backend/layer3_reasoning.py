@@ -100,7 +100,7 @@ print("Groq LLM connected.\n")
 # ─────────────────────────────────────────────────────────────
 
 KNOWLEDGE_PROMPT = """
-You are SaulGPT, an Indian Legal Knowledge Assistant.
+You are JuriSense, an Indian Legal Knowledge Assistant.
 Your job is to explain the law clearly based ONLY on the retrieved sections below.
 
 USER QUERY: {user_query}
@@ -162,7 +162,7 @@ YOUR EXPLANATION:
 """
 
 ANALYSIS_PROMPT = """
-You are SaulGPT, an Indian Legal Case Analyst.
+You are JuriSense, an Indian Legal Case Analyst.
 Analyze the user's situation using ONLY the retrieved legal sections below.
 
 USER QUERY: {user_query}
@@ -228,7 +228,7 @@ YOUR ANALYSIS:
 """
 
 DOCUMENT_PROMPT = """
-You are SaulGPT, an Indian Legal Document Drafting Assistant.
+You are JuriSense, an Indian Legal Document Drafting Assistant.
 Draft a formal legal document based ONLY on the retrieved sections and user details below.
 
 USER REQUEST: {user_query}
@@ -287,7 +287,7 @@ YOUR DOCUMENT DRAFT:
 """
 
 PATHFINDER_PROMPT = """
-You are SaulGPT, an Indian Legal Path Finder.
+You are JuriSense, an Indian Legal Path Finder.
 Give clear step by step procedural guidance based ONLY on the retrieved sections below.
 
 USER QUERY: {user_query}
@@ -456,10 +456,10 @@ def format_context(
 def handle_non_legal_query(query: str) -> str:
     """
     Returns a friendly off-topic response when the query is non-legal.
-    Encourages the user to ask legal questions within SaulGPT's domain.
+    Encourages the user to ask legal questions within JuriSense's domain.
     """
     return (
-        "Thanks for reaching out! I'm SaulGPT, your Indian Legal Intelligence Assistant. "
+        "Thanks for reaching out! I'm JuriSense, your Indian Legal Intelligence Assistant. "
         "I specialize in Indian law — criminal, civil, family, labour, "
         "constitutional, and your legal rights.\n\n"
         "Your question seems to be about something outside the legal domain, "
@@ -487,7 +487,7 @@ def handle_ambiguous_query(layer1_payload: dict) -> str:
         "→ Do you need step by step procedure "
         "(use Path Finder Mode)?\n\n"
         "The more specific your question, the better "
-        "SaulGPT can help you.\n\n"
+        "JuriSense can help you.\n\n"
         "Disclaimer: This response provides general procedural "
         "information based on Indian law and does not constitute "
         "legal advice. Please consult a qualified lawyer for "
@@ -607,7 +607,7 @@ def generate_legal_response(
         chain = prompt | llm
 
         print("\n" + "=" * 40)
-        print("🧠 SAULGPT IS TYPING...")
+        print("🧠 JURISENSE IS TYPING...")
         print("=" * 40 + "\n")
 
         final_answer = ""
@@ -629,7 +629,7 @@ def generate_legal_response(
         print("[Layer 3] Falling back to retrieval summary...")
 
         fallback_lines = [
-            "SaulGPT was unable to generate a full response at this time.",
+            "JuriSense was unable to generate a full response at this time.",
             "Based on retrieved legal sections, the following may be relevant:\n"
         ]
         for res in layer2_results[:3]:
@@ -705,7 +705,7 @@ if __name__ == "__main__":
     ]
 
     print("-" * 55)
-    print("SaulGPT — Layer 3 Reasoning Test")
+    print("JuriSense — Layer 3 Reasoning Test")
     print("-" * 55)
 
     print("\nTesting MODE: analysis (with Knowledge Graph context)")

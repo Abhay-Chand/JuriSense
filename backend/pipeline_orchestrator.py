@@ -19,7 +19,7 @@ New in v2:
 → Contract Evaluator: handled entirely in layer6_evaluator.py
   This pipeline is NOT called for /api/upload requests
 
-Run to chat with SaulGPT:
+Run to chat with JuriSense:
     python legal_pipeline/pipeline_orchestrator.py
 """
 
@@ -294,7 +294,7 @@ def run_saulgpt_pipeline(
     mode: str = None
 ) -> dict:
     """
-    Executes the complete SaulGPT pipeline end to end.
+    Executes the complete JuriSense pipeline end to end.
 
     Fixed order of operations:
     Step 0: Memory enrichment BEFORE Layer 1
@@ -333,7 +333,7 @@ def run_saulgpt_pipeline(
     """
 
     print("\n" + "=" * 55)
-    print("⚖️   SAULGPT PIPELINE ACTIVATED")
+    print("⚖️   JURISENSE PIPELINE ACTIVATED")
     print("=" * 55)
 
     start_time = time.time()
@@ -640,7 +640,7 @@ def run_saulgpt_pipeline(
 if __name__ == "__main__":
 
     print("\n" + "#" * 60)
-    print(" " * 15 + "⚖️   WELCOME TO SAULGPT ⚖️")
+    print(" " * 15 + "⚖️   WELCOME TO JURISENSE ⚖️")
     print(" " * 10 + "Your Local AI Indian Legal Assistant")
     print(" " * 8 + "Powered by Gemma 3 + Indian Law Database")
     print("#" * 60)

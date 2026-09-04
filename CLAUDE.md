@@ -1,8 +1,8 @@
-# SaulGPT - Project Memory
+# JuriSense - Project Memory
 
 ## Project Overview
 
-**SaulGPT** is an AI-powered Indian Legal Intelligence Assistant. It uses a 6-layer RAG (Retrieval-Augmented Generation) architecture to answer legal queries about Indian law, draft legal documents, and evaluate contracts.
+**JuriSense** is an AI-powered Indian Legal Intelligence Assistant. It uses a 6-layer RAG (Retrieval-Augmented Generation) architecture to answer legal queries about Indian law, draft legal documents, and evaluate contracts.
 
 ## Tech Stack
 
@@ -68,7 +68,7 @@ legal_ass/
 ├── data/
 │   ├── raw_data/            # JSON legal acts
 │   └── vector_db/           # ChromaDB embeddings
-├── saulgpt-ui/              # Frontend
+├── jurisense-ui/              # Frontend
 │   ├── src/                 # React UI components
 │   │   ├── App.jsx         # Main app
 │   │   ├── App.css
@@ -132,7 +132,7 @@ cd backend
 python api_server.py
 
 # Terminal 2 - Frontend
-cd saulgpt-ui
+cd jurisense-ui
 npm run dev
 ```
 
@@ -251,10 +251,10 @@ npm run setup
 - `backend/eval_pipeline.py`: RAG accuracy evaluation suite (8 gold-standard test cases).
 - `backend/irac_agent.py`: Advocate Mode IRAC agent — calls Layer 2 RAG retrieval, generates structured FACTS/ISSUES/RULE/APPLICATION/CONCLUSION analysis.
 - `backend/prompts/irac.py`: IRAC system prompt with domain guardrails, both-sides argumentation rules, RAG grounding requirement.
-- `saulgpt-ui/src/App.jsx`: Auth state management, sidebar toggle, 401 interceptor, `storage` event listener, guest migration flow, conv_id persistence.
-- `saulgpt-ui/src/AuthPage.jsx`: Login/Signup form with migration spinner.
-- `saulgpt-ui/src/ConversationsSidebar.jsx`: Paginated sidebar with "Load more" button.
-- `saulgpt-ui/src/App.css`: Auth page styles, sidebar styles, `@keyframes spin`.
+- `jurisense-ui/src/App.jsx`: Auth state management, sidebar toggle, 401 interceptor, `storage` event listener, guest migration flow, conv_id persistence.
+- `jurisense-ui/src/AuthPage.jsx`: Login/Signup form with migration spinner.
+- `jurisense-ui/src/ConversationsSidebar.jsx`: Paginated sidebar with "Load more" button.
+- `jurisense-ui/src/App.css`: Auth page styles, sidebar styles, `@keyframes spin`.
 - `scripts/launch.bat`, `Run.bat`: Removed hardcoded GROQ_API_KEY.
 - `.env`: Stores GROQ_API_KEY (gitignored).
 - `.env.example`: Template without real key.

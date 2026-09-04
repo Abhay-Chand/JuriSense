@@ -1,7 +1,7 @@
 """
 Agents Package
 ==============
-Multi-agent architecture for SaulGPT legal assistant.
+Multi-agent architecture for JuriSense legal assistant.
 
 Usage:
     from backend.agents import researcher, drafter, reviewer, manager

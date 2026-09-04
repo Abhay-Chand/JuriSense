@@ -1,5 +1,5 @@
 /**
- * SAULGPT — JurisdictionBadge
+ * JURISENSE — JurisdictionBadge
  * =============================
  * Court classifier UI showing which court has authority.
  *

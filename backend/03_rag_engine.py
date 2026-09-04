@@ -27,7 +27,7 @@ LLM_MODEL = "claude-sonnet-4-20250514"
 # SYSTEM PROMPT — The Legal GPT Persona
 # ─────────────────────────────────────────
 
-LEGAL_GPT_SYSTEM_PROMPT = """You are SaulGPT, an Indian legal procedural information assistant.
+LEGAL_GPT_SYSTEM_PROMPT = """You are JuriSense, an Indian legal procedural information assistant.
 
 YOUR PURPOSE:
 Explain Indian legal procedures, definitions, and relevant sections in a neutral, 

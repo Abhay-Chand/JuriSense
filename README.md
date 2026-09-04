@@ -16,7 +16,7 @@ cd backend
 python api_server.py
 
 # Terminal 2 — Frontend
-cd saulgpt-ui
+cd jurisense-ui
 npm run dev
 ```
 

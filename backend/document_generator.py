@@ -1,5 +1,5 @@
 """
-SAULGPT — DOCUMENT GENERATOR (.docx)
+JURISENSE — DOCUMENT GENERATOR (.docx)
 ======================================
 4-family architecture with LLM-generated structured specs.
 
@@ -136,7 +136,7 @@ def _add_disclaimer(doc: Document):
     p2 = doc.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r2 = p2.add_run(
-        "This document is a draft prepared by SaulGPT for informational purposes only. "
+        "This document is a draft prepared by JuriSense for informational purposes only. "
         "It does not constitute legal advice. Please consult a qualified advocate "
         "before using this document for any legal proceeding."
     )

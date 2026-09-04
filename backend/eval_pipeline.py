@@ -1,5 +1,5 @@
 """
-SaulGPT — Automated RAG & Hallucination Evaluation
+JuriSense — Automated RAG & Hallucination Evaluation
 ===================================================
 Tests ChromaDB retrieval accuracy, LLM response grounding,
 and anti-hallucination against a gold-standard evaluation set.
@@ -240,7 +240,7 @@ def test_rag_accuracy(case: dict, verbose: bool = False) -> dict:
 def run_eval_suite(verbose: bool = False) -> dict:
     """Run all evaluation cases and return summary."""
     print(f"\n{'='*60}")
-    print(f"  SAULGPT — RAG EVALUATION SUITE")
+    print(f"  JURISENSE — RAG EVALUATION SUITE")
     print(f"  {len(EVAL_DATASET)} test cases")
     print(f"{'='*60}\n")
 

@@ -1,8 +1,8 @@
-# SaulGPT Architecture
+# JuriSense Architecture
 
 ## System Overview
 
-SaulGPT is an AI-powered Indian Legal Intelligence Assistant with a 6-layer RAG pipeline, 3-phase "Virtual Counsel" flow, and full document drafting capabilities. Built with Python FastAPI backend and React+Vite frontend.
+JuriSense is an AI-powered Indian Legal Intelligence Assistant with a 6-layer RAG pipeline, 3-phase "Virtual Counsel" flow, and full document drafting capabilities. Built with Python FastAPI backend and React+Vite frontend.
 
 ---
 
@@ -11,7 +11,7 @@ SaulGPT is an AI-powered Indian Legal Intelligence Assistant with a 6-layer RAG 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Frontend (React + Vite)                    │
-│  saulgpt-ui/src/                                             │
+│  jurisense-ui/src/                                             │
 │  ├── App.jsx              Core chat UI, state management      │
 │  ├── AuthPage.jsx         Login/Signup                        │
 │  ├── ConversationsSidebar.jsx  Chat history sidebar           │

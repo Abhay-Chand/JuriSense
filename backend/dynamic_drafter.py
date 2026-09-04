@@ -1,5 +1,5 @@
 """
-SAULGPT — DYNAMIC DRAFTER (Generative Scoping Agent)
+JURISENSE — DYNAMIC DRAFTER (Generative Scoping Agent)
 ======================================================
 Moves from "Static Form" to "Reasoning Agent."
 
@@ -422,7 +422,7 @@ def build_dynamic_injection(document_name: str, collected: dict, fields: list) -
 
 if __name__ == "__main__":
     print("-" * 55)
-    print("SaulGPT — Dynamic Drafter Test")
+    print("JuriSense — Dynamic Drafter Test")
     print("-" * 55)
 
     test_problems = [

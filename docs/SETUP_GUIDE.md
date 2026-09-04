@@ -57,7 +57,7 @@ python 02_chunk_and_embed.py
 
 ### 4. Frontend Setup
 ```bash
-cd saulgpt-ui
+cd jurisense-ui
 npm install
 ```
 
@@ -72,7 +72,7 @@ Server starts at http://localhost:8000
 
 ### Terminal 2 — Frontend
 ```bash
-cd saulgpt-ui
+cd jurisense-ui
 npm run dev
 ```
 Frontend starts at http://localhost:5173
@@ -139,7 +139,7 @@ legal_ass/
 │   │   ├── strategy.py
 │   │   └── irac.py
 │   └── tests/                     # Test files
-├── saulgpt-ui/
+├── jurisense-ui/
 │   ├── src/
 │   │   ├── App.jsx                # Main chat UI
 │   │   ├── AuthPage.jsx           # Login/signup

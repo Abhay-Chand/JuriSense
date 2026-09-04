@@ -1,5 +1,5 @@
 """
-SaulGPT — Authentication Layer
+JuriSense — Authentication Layer
 ===============================
 JWT token creation/verification + bcrypt password hashing.
 """
