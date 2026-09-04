@@ -1,4 +1,4 @@
-# SaulGPT — Indian Legal Intelligence Assistant
+# JuriSense — Indian Legal Intelligence Assistant
 
 AI-powered Indian Legal Intelligence Assistant with a 6-layer RAG pipeline, 3-phase "Virtual Counsel" flow (Discovery → Strategy → Execution), document drafting, contract evaluation, and IRAC Advocate Mode.
 
