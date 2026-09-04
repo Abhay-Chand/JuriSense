@@ -279,6 +279,16 @@ function DropZone({ onFile, disabled }) {
   return (
     <div
       className={`drop-zone ${dragging ? "dragging" : ""} ${disabled ? "disabled" : ""}`}
+      role="button"
+      tabIndex={disabled ? -1 : 0}
+      aria-label="Upload a contract for evaluation"
+      onClick={() => !disabled && document.querySelector('input[type="file"]')?.click()}
+      onKeyDown={e => {
+        if (!disabled && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          document.querySelector('input[type="file"]')?.click();
+        }
+      }}
       onDragOver={e => { e.preventDefault(); setDragging(true); }}
       onDragLeave={() => setDragging(false)}
       onDrop={handleDrop}
@@ -672,7 +682,7 @@ export default function App() {
       <div className={`app-main ${showSidebar ? "sidebar-open" : ""}`}>
         <header className="header">
           <div className="header-inner">
-            <button className="sidebar-toggle" onClick={() => setShowSidebar(s => !s)} title="Chat History">
+            <button className="sidebar-toggle" onClick={() => setShowSidebar(s => !s)} title="Chat History" aria-label="Open chat history">
               ☰
             </button>
 
@@ -715,16 +725,17 @@ export default function App() {
               className={`glossary-toggle ${showGlossary ? "active" : ""}`}
               onClick={() => setShowGlossary(!showGlossary)}
               title="Legal Terms Glossary"
+              aria-expanded={showGlossary}
             >
               📖 Glossary
             </button>
 
-            <button className="clear-btn" onClick={clearChat}>⟳ New Matter</button>
+            <button className="clear-btn" onClick={clearChat} aria-label="Start a new matter">⟳ New Matter</button>
 
             {/* User menu */}
             <div className="user-menu">
               <span className="user-email">{user?.username || user?.email || "User"}</span>
-              <button className="logout-btn" onClick={logout} title="Sign Out">🚪</button>
+              <button className="logout-btn" onClick={logout} title="Sign Out" aria-label="Sign out">🚪</button>
             </div>
           </div>
 
@@ -742,11 +753,11 @@ export default function App() {
                 <span className="seal-glyph">⚖</span>
               </div>
               <h2 className="welcome-title">
-                Your Counsel<br />
-                <span className="gold-text">Awaits</span>
+                What can JuriSense<br />
+                <span className="gold-text">help you with?</span>
               </h2>
               <p className="welcome-sub">
-                RAG · Knowledge Graph · Contract Evaluation · Interactive Drafting
+                Research Indian law, understand your options, review a contract, or build a document with guided AI support.
               </p>
 
               <div className="feature-cards">
@@ -916,6 +927,7 @@ export default function App() {
                 className={`send-btn ${loading ? "loading" : ""}`}
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
+                aria-label={loading ? "Sending message" : "Send message"}
               >
                 {loading
                   ? <span className="spinner" />

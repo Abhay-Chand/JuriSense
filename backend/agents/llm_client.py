@@ -23,13 +23,13 @@ if not GROQ_API_KEY:
 RESEARCHER_MODEL = "mixtral-8x7b-32768"
 
 # Large context (128K), best for document creation
-DRAFTER_MODEL = "llama-3.1-8b-instant"
+DRAFTER_MODEL = "openai/gpt-oss-120b"
 
 # Fast + accurate for reviews and validation
-REVIEWER_MODEL = "llama-3.1-8b-instant"
+REVIEWER_MODEL = "openai/gpt-oss-120b"
 
 # Lightweight model for triage/strategy calls
-TRIAGE_MODEL = "llama-3.1-8b-instant"
+TRIAGE_MODEL = "openai/gpt-oss-120b"
 
 # ============================================================
 # LLM INSTANCES
