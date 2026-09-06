@@ -1,485 +1,185 @@
-# ⚖️ JuriSense
+# JuriSense
 
-### Indian Legal Intelligence Assistant powered by RAG, LLMs & Multi-Agent AI
+### Indian legal intelligence for research, reasoning, and document workflows
 
-JuriSense is an AI-powered legal intelligence platform designed to help users research Indian legal information, analyze documents, draft legal documents, and work through structured legal reasoning workflows.
+JuriSense is an AI-assisted legal research and drafting platform built for Indian-law use cases. It combines retrieval-augmented generation, hybrid search, specialist agents, structured legal reasoning, document generation, and persistent conversations in one application.
 
-It combines **Retrieval-Augmented Generation (RAG)**, semantic and lexical retrieval, re-ranking, specialized AI agents, document processing, authentication, and a React-based user interface into a single application.
+> **Legal notice:** JuriSense is a research and drafting aid, not a law firm or a substitute for qualified legal advice. Verify every generated response, citation, deadline, and document with an appropriate legal professional before relying on it.
 
-> **Important:** JuriSense is an AI assistance and research tool, not a substitute for a qualified legal professional. AI-generated content must be independently verified before being used for legal decisions or filings.
+## What it does
 
----
+- **Research:** Ask natural-language questions about Indian law and receive retrieval-grounded answers with source context.
+- **Virtual Counsel:** Move through a controlled `Discovery -> Strategy -> Execution` workflow for fact gathering and next-step planning.
+- **Advocate Mode:** Request an IRAC-style analysis covering facts, issues, rules, application, counterarguments, and conclusion.
+- **Drafting:** Collect the required facts conversationally, run pre-draft scrutiny, and generate editable `.docx` documents.
+- **Contract evaluation:** Upload PDF, DOCX, or TXT files for structured review.
+- **Persistent workspaces:** Create accounts, save conversations, and return to prior research sessions.
+- **Indian-law awareness:** Surface updates when older references such as IPC or CrPC need to be considered alongside their newer statutory counterparts.
 
-## ✨ Features
+## Core workflows
 
-### 🔎 Legal Research
-- Natural-language legal question answering
-- Retrieval from an Indian legal knowledge base
-- Semantic vector search
-- BM25 lexical search
-- Hybrid retrieval
-- CrossEncoder re-ranking
-- Source-grounded responses
+### 1. Research and Q&A
 
-### 🤖 AI Legal Assistant
-- Conversational legal assistance
-- Query triage and workflow routing
-- Specialized research, drafting and review agents
-- Context-aware responses
-- Structured AI workflows
+The six-layer pipeline understands a query, retrieves relevant legal material, generates a response, validates the result, falls back to external Indian-law sources when appropriate, and evaluates confidence.
 
-### 📄 Document Intelligence
-- PDF processing
-- Word document processing
-- Document analysis
-- Legal document workflows
-- Draft generation and export
+### 2. Virtual Counsel
 
-### 📝 Legal Drafting
-- Legal notice drafting
-- Structured document generation
-- AI-assisted drafting workflows
-- Review-oriented workflow
-
-### ⚖️ Structured Legal Reasoning
-- IRAC-style analysis
-- Issue identification
-- Rule identification
-- Application
-- Conclusion
-
-### 🧠 Virtual Counsel
-A multi-stage workflow intended to support:
+Virtual Counsel is a Python-enforced state machine rather than a single prompt:
 
 ```text
-Discovery
-   ↓
-Strategy
-   ↓
-Execution
+Discovery  ->  Strategy  ->  Execution
+             /                     \
+     document drafting       procedural guidance
 ```
 
-### 🔐 Authentication
-- User registration
-- Login
-- JWT authentication
-- Password hashing
-- Conversation/user persistence
+- **Discovery:** Clarifies the situation, evidence, timeline, emotional state, and desired outcome. The intake is capped at three turns.
+- **Strategy:** Produces a SWOT-style assessment and exactly four validated options.
+- **Execution:** Routes the selected option to document drafting or step-by-step procedural guidance. Advocate Mode is available for deeper IRAC analysis.
 
-### 💬 Conversation History
-- Persistent conversations
-- Previous interaction retrieval
-- New conversation workflows
+```mermaid
+flowchart TD
+  A[User describes a legal situation] --> B{Triage}
+  B -->|General legal question| C[Six-layer RAG pipeline]
+  B -->|Personal legal grievance| D[Discovery]
+  D --> E[Strategy: SWOT plus four options]
+  E --> F{User selects a route}
+  F -->|Document| G[Interview and collect fields]
+  G --> H[Scrutiny and explicit confirmation]
+  H --> I[Generate editable DOCX]
+  F -->|Pathfinder| J[Procedural legal guidance]
+  E --> K[Advocate Mode]
+  K --> L[IRAC analysis]
+```
 
-### 🛡️ Safety & Reliability
-- Retrieval-grounded responses
-- Source-aware generation
-- Input handling
-- Legal-context safeguards
-- Workflow separation
+### 3. Document drafting
 
----
+Drafting is intentionally gated: the user selects a drafting route, answers the interview questions, reviews scrutiny findings, and explicitly confirms generation. Supported workflows include legal notices, cheque-bounce notices, employment notices, FIR complaints, and rental agreements, with a dynamic fallback for other document types.
 
-# 🏗️ Architecture
+## Architecture
 
 ```text
-                         ┌─────────────────────┐
-                         │      React UI       │
-                         │     Vite + React    │
-                         └──────────┬──────────┘
-                                    │
-                                  HTTP
-                                    │
-                                    ▼
-                         ┌─────────────────────┐
-                         │       FastAPI       │
-                         │    API Server       │
-                         └──────────┬──────────┘
-                                    │
-               ┌────────────────────┼────────────────────┐
-               │                    │                    │
-               ▼                    ▼                    ▼
-        Authentication        AI Workflows        Application Services
-        JWT + SQLite          Agent Manager        Documents/Chat/etc.
-                                    │
-                  ┌─────────────────┼─────────────────┐
-                  │                 │                 │
-                  ▼                 ▼                 ▼
-               Triage           Research          Drafting
-                  │                 │                 │
-                  └─────────────────┼─────────────────┘
-                                    ▼
-                                Reviewer
-                                    │
-                                    ▼
-                              RAG Pipeline
-                                    │
-                  ┌─────────────────┴─────────────────┐
-                  │                                   │
-                  ▼                                   ▼
-           Semantic Retrieval                   BM25 Retrieval
-           Sentence Transformers                Lexical Search
-                  │                                   │
-                  └─────────────────┬─────────────────┘
-                                    ▼
-                              Candidate Set
-                                    │
-                                    ▼
-                              CrossEncoder
-                               Re-ranking
-                                    │
-                                    ▼
-                              Relevant Context
-                                    │
-                                    ▼
-                                Groq LLM
-                                    │
-                                    ▼
-                            Grounded Response
+React + Vite frontend
+          |
+          v
+FastAPI API server
+    |       |       |
+  Auth   Workflows  Uploads
+    |       |       |
+ SQLite  Agents   Documents
+          |
+          v
+    Six-layer RAG pipeline
+          |
+  Hybrid retrieval -> Groq LLM -> validation -> confidence
 ```
 
----
+### Request lifecycle
 
-# 🧰 Technology Stack
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as React UI
+    participant API as FastAPI
+    participant State as Session and triage state
+    participant RAG as RAG and agent services
+    participant DB as SQLite
 
-## Backend
-
-| Technology | Purpose |
-|---|---|
-| Python 3.11 | Backend/runtime |
-| FastAPI | REST API |
-| Uvicorn | ASGI server |
-| Pydantic | Data validation |
-| SQLite | Application database |
-| JWT | Authentication |
-| Passlib + bcrypt | Password hashing |
-
-## AI / RAG
-
-| Technology | Purpose |
-|---|---|
-| Groq | LLM inference |
-| LangChain | LLM/AI integration |
-| Sentence Transformers | Embeddings |
-| ChromaDB | Vector database |
-| BM25 | Lexical retrieval |
-| CrossEncoder | Re-ranking |
-| spaCy | NLP processing |
-| NetworkX | Graph-oriented processing |
-
-## Documents
-
-| Technology | Purpose |
-|---|---|
-| PyMuPDF | PDF processing |
-| python-docx | Word document processing/generation |
-
-## Frontend
-
-| Technology | Purpose |
-|---|---|
-| React 18 | UI |
-| Vite | Frontend tooling |
-| Axios | API communication |
-| jsPDF | PDF export |
-
----
-
-# 📁 Project Structure
-
-```text
-JuriSense/
-│
-├── backend/
-│   ├── api_server.py
-│   ├── database.py
-│   ├── auth.py
-│   │
-│   ├── agents/
-│   │   ├── manager.py
-│   │   ├── llm_client.py
-│   │   ├── researcher.py
-│   │   ├── drafter.py
-│   │   ├── reviewer.py
-│   │   └── triage.py
-│   │
-│   ├── layer1_understanding.py
-│   ├── layer2_retrieval.py
-│   ├── layer3_generation.py
-│   ├── layer4_verification.py
-│   ├── layer5_safety.py
-│   ├── layer6_response.py
-│   │
-│   ├── pipeline_orchestrator.py
-│   ├── 02_chunk_and_embed.py
-│   ├── 03_rag_engine.py
-│   │
-│   ├── document_generator.py
-│   ├── dynamic_drafter.py
-│   ├── irac_agent.py
-│   ├── scrutiny_agent.py
-│   └── eval_pipeline.py
-│
-├── data/
-│   ├── raw_data/
-│   └── vector_db/
-│
-├── jurisense-ui/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.*
-│
-├── docs/
-│   ├── ARCHITECTURE.md
-│   └── SETUP_GUIDE.md
-│
-├── scripts/
-│   ├── setup.bat
-│   └── start.bat
-│
-├── .env.example
-├── README.md
-└── LICENSE
+    User->>UI: Submit question or upload
+    UI->>API: POST /api/chat or /api/upload
+    API->>State: Resolve session and workflow state
+    API->>API: Safety, jurisdiction, and triage checks
+    API->>RAG: Dispatch research, drafting, review, or IRAC flow
+    RAG-->>API: Grounded result and metadata
+    API->>DB: Persist authenticated conversation
+    API-->>UI: Response, citations, widgets, or document link
+    UI-->>User: Render result and next action
 ```
 
----
+### Six-layer RAG pipeline
 
-# 🚀 Installation
+```mermaid
+flowchart LR
+  Q[User query] --> U[1. Understand]
+  U --> R[2. Retrieve]
+  R --> G[3. Generate]
+  G --> V[4. Validate]
+  V --> E[6. Evaluate]
+  R -. low confidence .-> X[5. External Indian-law search]
+  X --> G
+  V --> O[Grounded response]
+  E --> O
+```
 
-## Prerequisites
+| Layer | Responsibility | Implementation |
+| --- | --- | --- |
+| 1 | Query understanding and legal-domain classification | `layer1_understanding.py` |
+| 2 | Hybrid retrieval and reranking | ChromaDB, Sentence Transformers, BM25, CrossEncoder |
+| 3 | Response generation and legal reasoning | Groq via `layer3_reasoning.py` |
+| 4 | Fact checking and citation validation | `layer4_validation.py` |
+| 5 | External Indian-law fallback search | DuckDuckGo and Indian legal sources |
+| 6 | Confidence scoring and legal insights | `layer6_evaluator.py`, knowledge graph |
 
-Install the following before starting:
+### Data and persistence
 
-- Python **3.11**
-- Node.js 18+ recommended
+- `data/raw_data/` contains the legal source JSON files.
+- `data/vector_db/` contains the ChromaDB index used for retrieval.
+- `backend/saulgpt.db` stores users, conversations, and messages in SQLite.
+- The default ChromaDB collection is `saulgpt_indian_laws`.
+
+## Technology
+
+| Area | Tools |
+| --- | --- |
+| Frontend | React 18, Vite, Axios, jsPDF |
+| Backend | Python, FastAPI, Uvicorn, Pydantic |
+| AI | Groq, LangChain, Sentence Transformers, spaCy |
+| Retrieval | ChromaDB, BM25, CrossEncoder reranking |
+| Documents | PyMuPDF, python-docx |
+| Auth and storage | JWT, bcrypt, SQLite |
+
+## Quick start on Windows
+
+### Prerequisites
+
+- Python 3.11 recommended
+- Node.js 18 or later
 - npm
-- Git
+- A Groq API key
 
-### Why Python 3.11?
+### Option A: one-click launch
 
-The current dependency stack contains older AI packages.
-
-In particular, the pinned `sentence-transformers`/ChromaDB ecosystem can cause Windows build problems on newer Python versions.
-
-**Python 3.11 is the recommended version for this repository.**
-
-Check:
+For a fresh checkout, run:
 
 ```powershell
-py -0p
+scripts\setup.bat
+start.vbs
 ```
 
-You should see Python 3.11 installed.
+The launcher starts the backend on `http://localhost:8000`, starts the frontend on `http://localhost:5173`, and opens the application in a browser.
 
-Then:
+### Option B: manual setup
 
-```powershell
-py -3.11 --version
-```
-
----
-
-# 🐍 Backend Setup
-
-From the project root:
+From the repository root:
 
 ```powershell
 py -3.11 -m venv .venv
-```
-
-Activate the environment:
-
-```powershell
 .\.venv\Scripts\Activate.ps1
-```
-
-Verify:
-
-```powershell
-python --version
-```
-
-Expected:
-
-```text
-Python 3.11.x
-```
-
-Verify the interpreter:
-
-```powershell
-python -c "import sys; print(sys.executable)"
-```
-
-It should point to:
-
-```text
-JuriSense\.venv\Scripts\python.exe
-```
-
-Upgrade packaging tools:
-
-```powershell
 python -m pip install --upgrade pip setuptools wheel
-```
-
-Install dependencies:
-
-```powershell
 python -m pip install -r backend\requirements.txt
+cd jurisense-ui
+npm install
+cd ..
 ```
 
----
-
-# 🔧 Important Hugging Face Compatibility Fix
-
-The project currently uses:
-
-```text
-sentence-transformers==2.2.2
-```
-
-This older version expects the `cached_download` API from older versions of `huggingface-hub`.
-
-If you see:
-
-```text
-ImportError:
-cannot import name 'cached_download'
-from 'huggingface_hub'
-```
-
-install the compatible versions:
-
-```powershell
-python -m pip uninstall -y huggingface-hub transformers sentence-transformers
-
-python -m pip install `
-  "huggingface-hub==0.20.3" `
-  "transformers==4.35.2" `
-  "sentence-transformers==2.2.2"
-```
-
-Verify:
-
-```powershell
-python -c "import huggingface_hub; print('HF Hub:', huggingface_hub.__version__); import transformers; print('Transformers:', transformers.__version__); import sentence_transformers; print('Sentence Transformers:', sentence_transformers.__version__)"
-```
-
-Expected:
-
-```text
-HF Hub: 0.20.3
-Transformers: 4.35.2
-Sentence Transformers: 2.2.2
-```
-
----
-
-# 🔑 Environment Variables
-
-Create a `.env` file in the **project root**, next to `README.md`.
-
-Example:
+Create `.env` in the repository root, next to this README:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-Start from:
+Then start the services in two terminals.
 
-```text
-.env.example
-```
-
-Do not commit your real API key.
-
-Your `.gitignore` should include:
-
-```text
-.env
-.venv/
-__pycache__/
-```
-
----
-
-# 🤖 Groq Configuration
-
-The application uses Groq for LLM inference.
-
-The exact model IDs are configured in:
-
-```text
-backend/agents/llm_client.py
-```
-
-If a configured model has been deprecated or removed by Groq, update the model ID there to a currently supported Groq model.
-
-For example, current Groq-supported models can be checked from the official Groq documentation before changing production configuration.
-
-Do not blindly change every model. Match the model to the workflow:
-
-```text
-Complex reasoning
-        ↓
-Stronger model
-
-Routing/classification
-        ↓
-Fast smaller model
-```
-
----
-
-# 🧠 Build the Vector Database
-
-The repository contains legal source data under:
-
-```text
-data/raw_data/
-```
-
-The RAG system expects a persistent vector database under:
-
-```text
-data/vector_db/
-```
-
-If `data/vector_db/` is missing or empty, build the index.
-
-From the project root:
-
-```powershell
-python backend\02_chunk_and_embed.py
-```
-
-The indexing process creates embeddings using:
-
-```text
-all-MiniLM-L6-v2
-```
-
-and stores them in ChromaDB.
-
-The expected collection is:
-
-```text
-saulgpt_indian_laws
-```
-
-### Important
-
-The embedding model may download from Hugging Face the first time it runs.
-
-The first indexing operation can therefore take longer than subsequent runs.
-
----
-
-# ▶️ Start the Backend
-
-From the project root:
+**Terminal 1: backend**
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -487,756 +187,114 @@ cd backend
 python api_server.py
 ```
 
-The backend is expected to run on:
-
-```text
-http://localhost:8000
-```
-
-FastAPI documentation should be available at:
-
-```text
-http://localhost:8000/docs
-```
-
-and:
-
-```text
-http://localhost:8000/redoc
-```
-
----
-
-# 🎨 Start the Frontend
-
-Open another terminal.
-
-From the project root:
-
-```powershell
-cd jurisense-ui
-npm install
-npm run dev
-```
-
-Vite will display the local frontend URL, typically:
-
-```text
-http://localhost:5173
-```
-
-Open that URL in your browser.
-
----
-
-# 🔄 Typical Development Workflow
-
-Use two terminals.
-
-### Terminal 1 — Backend
-
-```powershell
-cd JuriSense
-.\.venv\Scripts\Activate.ps1
-cd backend
-python api_server.py
-```
-
-### Terminal 2 — Frontend
-
-```powershell
-cd JuriSense\jurisense-ui
-npm run dev
-```
-
----
-
-# 🧪 Verify the Installation
-
-Before testing the UI, verify Python:
-
-```powershell
-python --version
-```
-
-Then verify important AI packages:
-
-```powershell
-python -c "import chromadb; print('ChromaDB OK')"
-python -c "import sentence_transformers; print('Sentence Transformers OK')"
-python -c "import transformers; print('Transformers OK')"
-python -c "import fastapi; print('FastAPI OK')"
-```
-
-Then start the backend:
-
-```powershell
-cd backend
-python api_server.py
-```
-
-Finally start the frontend:
+**Terminal 2: frontend**
 
 ```powershell
 cd jurisense-ui
 npm run dev
 ```
 
----
+Open [http://localhost:5173](http://localhost:5173). FastAPI documentation is available at [http://localhost:8000/docs](http://localhost:8000/docs).
 
-# 🐛 Common Errors & Fixes
+## Vector index
 
-## 1. `Microsoft Visual C++ 14.0 or greater is required`
-
-Example:
-
-```text
-Building wheel for chroma-hnswlib
-error: Microsoft Visual C++ 14.0 or greater is required
-```
-
-### Cause
-
-A package is being built from source because a compatible Windows wheel is unavailable for the selected Python version.
-
-### Recommended fix
-
-Use Python 3.11.
-
-```powershell
-deactivate
-
-Remove-Item -Recurse -Force .venv
-
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -r backend\requirements.txt
-```
-
-Do not immediately install Visual Studio Build Tools unless you specifically want to compile native dependencies.
-
----
-
-# 2. `cannot import name 'cached_download'`
-
-Example:
-
-```text
-ImportError:
-cannot import name 'cached_download'
-from 'huggingface_hub'
-```
-
-### Fix
-
-```powershell
-python -m pip uninstall -y huggingface-hub transformers sentence-transformers
-
-python -m pip install `
-  "huggingface-hub==0.20.3" `
-  "transformers==4.35.2" `
-  "sentence-transformers==2.2.2"
-```
-
-Then verify the versions as described above.
-
----
-
-# 3. `GROQ_API_KEY not set`
-
-Example:
-
-```text
-ValueError:
-GROQ_API_KEY not set
-```
-
-### Fix
-
-Create:
-
-```text
-.env
-```
-
-in the project root:
-
-```env
-GROQ_API_KEY=your_actual_key
-```
-
-Then restart the backend.
-
-Do not put the key directly into source code.
-
----
-
-# 4. `ModuleNotFoundError`
-
-Example:
-
-```text
-ModuleNotFoundError: No module named 'xyz'
-```
-
-First confirm the virtual environment:
-
-```powershell
-python -c "import sys; print(sys.executable)"
-```
-
-It should point to:
-
-```text
-.venv\Scripts\python.exe
-```
-
-Then install using the same interpreter:
-
-```powershell
-python -m pip install <package>
-```
-
-Do not use a different global Python installation accidentally.
-
----
-
-# 5. Wrong Python Version
-
-Check:
-
-```powershell
-python --version
-```
-
-If it shows:
-
-```text
-Python 3.12
-```
-
-or:
-
-```text
-Python 3.14
-```
-
-recreate the environment:
-
-```powershell
-deactivate
-Remove-Item -Recurse -Force .venv
-
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
----
-
-# 6. PowerShell blocks activation
-
-If:
+The repository includes a prebuilt index under `data/vector_db/`. If it is missing or needs to be rebuilt, run this from the repository root:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
-```
-
-is blocked by execution policy, you can activate for the current PowerShell session:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Then:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
----
-
-# 7. Port 8000 already in use
-
-If FastAPI cannot bind to port 8000, find the process:
-
-```powershell
-netstat -ano | findstr :8000
-```
-
-Then stop the relevant process if appropriate.
-
-Alternatively, use the project's supported configuration rather than randomly changing frontend/backend ports.
-
----
-
-# 8. Frontend shows `500 Internal Server Error`
-
-A 500 response means the backend encountered an error.
-
-Check the **backend terminal first**.
-
-Do not assume the frontend is broken.
-
-Typical causes include:
-
-- Missing `GROQ_API_KEY`
-- AI dependency mismatch
-- Missing vector database
-- Model/API failure
-- Invalid backend configuration
-- Runtime exception
-
-Always inspect the backend traceback before changing frontend code.
-
----
-
-# 9. RAG returns no useful results
-
-Check whether:
-
-```text
-data/vector_db/
-```
-
-exists and contains the ChromaDB data.
-
-If it is missing, run:
-
-```powershell
 python backend\02_chunk_and_embed.py
 ```
 
-Then restart the backend.
+The first run may download the `all-MiniLM-L6-v2` embedding model and can take several minutes.
 
----
-
-# 10. Model download problems
-
-Sentence Transformers may download models the first time.
-
-Check:
-
-- Internet connectivity
-- Hugging Face availability
-- Correct package versions
-- Local cache permissions
-
-Do not repeatedly reinstall the entire environment for a model-download problem.
-
----
-
-# 11. Frontend cannot connect to backend
-
-Verify:
+## Project layout
 
 ```text
-Backend:
-http://localhost:8000
-
-Frontend:
-http://localhost:5173
+JuriSense/
+├── backend/
+│   ├── api_server.py              # FastAPI entry point
+│   ├── pipeline_orchestrator.py   # Conversation memory and RAG dispatch
+│   ├── discovery_agent.py         # Virtual Counsel discovery
+│   ├── strategy_agent.py          # Validated strategy options
+│   ├── irac_agent.py              # Advocate Mode analysis
+│   ├── interview_state.py         # Drafting interview state machine
+│   ├── document_generator.py      # .docx generation
+│   ├── scrutiny_agent.py          # Pre-draft review
+│   ├── layer1_*.py ... layer6_*.py # RAG pipeline layers
+│   ├── agents/                    # Research, drafting, review, and triage agents
+│   ├── prompts/                   # Centralized prompt templates
+│   └── tests/                     # Backend tests
+├── data/
+│   ├── raw_data/                  # Indian legal source data
+│   └── vector_db/                 # ChromaDB persistence
+├── jurisense-ui/
+│   └── src/                       # React application
+├── docs/                          # Architecture and setup notes
+├── scripts/                      # Windows setup and launch scripts
+├── .env.example
+└── README.md
 ```
 
-Then inspect:
-
-- Browser DevTools → Network
-- Browser Console
-- Backend terminal
-- API endpoint URL
-- CORS configuration
-
-Do not change backend API contracts just to hide a frontend integration problem.
-
----
-
-# ⚠️ Important Compatibility Notes
-
-This repository currently contains an older AI dependency stack.
-
-The following versions are particularly important:
-
-```text
-Python:
-3.11
-
-sentence-transformers:
-2.2.2
-
-huggingface-hub:
-0.20.3
-
-transformers:
-4.35.2
-```
-
-Keep these versions stable unless you have tested a newer compatible stack.
-
-A package upgrade can cause runtime incompatibilities even when installation succeeds.
-
----
-
-# 🔐 Security Notes
-
-Never commit:
-
-```text
-.env
-API keys
-JWT secrets
-User credentials
-Private legal documents
-Database files containing sensitive user data
-```
-
-For a production deployment, additionally consider:
-
-- HTTPS
-- Secret management
-- Strong JWT configuration
-- Token expiration/rotation
-- Rate limiting
-- File type/size validation
-- Malware scanning for uploads
-- Authorization checks
-- User-level data isolation
-- Prompt-injection defenses
-- Audit logging
-- Secure CORS configuration
-- Encryption at rest
-- Secure database deployment
-
----
-
-# ⚖️ Legal Safety
-
-JuriSense should be treated as an **AI-assisted legal information and workflow system**.
-
-AI output can contain:
-
-- Incorrect interpretations
-- Missing context
-- Outdated information
-- Retrieval errors
-- Hallucinated claims
-
-Legal responses should therefore be verified against authoritative sources and, where appropriate, reviewed by a qualified legal professional.
-
-Do not present generated content as guaranteed legal advice.
-
----
-
-# 📊 RAG Design
-
-The project's retrieval strategy combines multiple retrieval signals.
-
-```text
-User Query
-    │
-    ▼
-Query Processing
-    │
-    ├───────────────┐
-    ▼               ▼
-Vector Search      BM25
-    │               │
-    └───────┬───────┘
-            ▼
-      Candidate Merge
-            │
-            ▼
-       CrossEncoder
-        Re-ranking
-            │
-            ▼
-       Top Context
-            │
-            ▼
-           LLM
-            │
-            ▼
-      Final Response
-```
-
-This is preferable to relying exclusively on semantic similarity because legal queries frequently contain exact terms such as:
-
-- Section numbers
-- Act names
-- Case names
-- Legal phrases
-
----
-
-# 🧩 Multi-Agent Design
-
-JuriSense separates several AI responsibilities.
-
-```text
-                   User Request
-                        │
-                        ▼
-                     Triage
-                        │
-          ┌─────────────┼─────────────┐
-          ▼             ▼             ▼
-       Research       Drafting      Review
-          │             │             │
-          └─────────────┼─────────────┘
-                        ▼
-                  Final Response
-```
-
-The benefit of specialization is better separation of responsibilities.
-
-However, multi-agent systems also introduce:
-
-- More latency
-- More token usage
-- Routing errors
-- Context-management complexity
-- Debugging complexity
-
-For production, agents should only be used where dynamic workflow selection provides meaningful value.
-
----
-
-# 🧪 Testing & Evaluation
-
-Before production deployment, establish an evaluation dataset containing realistic legal queries.
-
-### Retrieval metrics
-
-- Recall@K
-- Precision@K
-- MRR
-- nDCG
-
-### Generation metrics
-
-- Faithfulness
-- Relevance
-- Citation correctness
-- Completeness
-- Legal grounding
-
-### System metrics
-
-- Latency
-- Error rate
-- Token usage
-- Cost per request
-- Retrieval failure rate
-
-Human/legal-expert review should be included for high-risk legal workflows.
-
----
-
-# 🚢 Production Considerations
-
-The current architecture is suitable as a development/prototype foundation, but production deployment should address:
-
-### Infrastructure
-
-- Docker
-- Production ASGI deployment
-- PostgreSQL where appropriate
-- Redis/queue for long-running jobs
-- Object storage for documents
-- Centralized logging
-- Monitoring
-- Tracing
-
-### AI reliability
-
-- Evaluation pipeline
-- Retrieval thresholds
-- Citation validation
-- Output validation
-- Prompt-injection protection
-- Model fallback
-- Model/version management
-
-### Scalability
-
-Potential production flow:
-
-```text
-Client
-  ↓
-Load Balancer
-  ↓
-FastAPI
-  ↓
-Queue ──────────────┐
-  ↓                 │
-Workers             │
-  ↓                 │
-RAG / Agents        │
-  ↓                 │
-LLM                  │
-  ↓                 │
-Database / Storage ◄─┘
-```
-
-Do not introduce all of these components just for the sake of complexity. Add them when actual scale and reliability requirements justify them.
-
----
-
-# 🛠️ Development Guidelines
-
-When modifying the project:
-
-1. Understand the existing architecture first.
-2. Keep API contracts stable.
-3. Avoid unnecessary dependency upgrades.
-4. Keep secrets out of source control.
-5. Test AI changes against representative queries.
-6. Test retrieval independently from generation.
-7. Log enough information to debug failures.
-8. Avoid silently changing legal/business logic.
-9. Keep frontend and backend responsibilities separated.
-10. Prefer measured improvements over assumptions.
-
----
-
-# 🔮 Future Improvements
-
-Potential future work includes:
-
-- Better domain-specific embeddings
-- Improved structure-aware legal chunking
-- Stronger reranking
-- Citation verification
-- OCR for scanned legal documents
-- PostgreSQL migration
-- Asynchronous job processing
-- Redis caching
-- Production vector database
-- Automated RAG evaluation
-- Human feedback loops
-- Better observability
-- Model routing
-- Streaming responses
-- Fine-grained authorization
-- Document versioning
-- Audit trails
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-Recommended workflow:
-
-```bash
-git clone <repository-url>
-cd JuriSense
-
-# Create a feature branch
-git checkout -b feature/your-feature
-
-# Make changes
-# Test locally
-
-git add .
-git commit -m "feat: describe your change"
-git push origin feature/your-feature
-```
-
-Before opening a pull request:
-
-- Verify the backend starts.
-- Verify the frontend builds.
-- Verify existing APIs still work.
-- Verify no secrets are committed.
-- Test affected AI workflows.
-- Document breaking changes.
-
----
-
-# 📜 License
-
-See the repository's `LICENSE` file for licensing information.
-
----
-
-# 👨‍💻 Project
-
-**JuriSense — Indian Legal Intelligence Assistant**
-
-Built with:
-
-```text
-Python
-FastAPI
-React
-RAG
-ChromaDB
-Sentence Transformers
-BM25
-CrossEncoder
-LangChain
-Groq
-SQLite
-```
-
----
-
-## ⭐ If You Find This Project Useful
-
-Consider starring the repository and sharing feedback.
-
-For issues, use the repository's issue tracker and include:
-
-```text
-Python version
-OS
-Installation command
-Full error message
-Backend traceback
-Frontend console error
-Steps to reproduce
-```
-
-This makes debugging substantially easier.
-
----
-
-## Quick Start
-
-For experienced users:
+## API surface
+
+The primary endpoints are:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `POST` | `/api/chat` | Main chat, triage, RAG, drafting, and Advocate Mode flow |
+| `POST` | `/api/chat/stream` | SSE-streaming chat response |
+| `POST` | `/api/upload` | Evaluate a PDF, DOCX, or TXT contract |
+| `GET` | `/api/health` | Check backend availability |
+| `GET` | `/api/conversations` | List authenticated conversations |
+| `POST` | `/api/conversations` | Create a conversation |
+| `GET` | `/api/conversations/{id}` | Load a conversation and its messages |
+| `DELETE` | `/api/conversations/{id}` | Delete a conversation |
+| `POST` | `/api/conversations/migrate` | Import a guest session after sign-in |
+| `DELETE` | `/api/history/{session_id}` | Clear session history |
+| `DELETE` | `/api/draft/state/{session_id}` | Cancel and clear drafting state |
+| `GET` | `/api/document/{session_id}` | Download a generated `.docx` |
+| `GET` | `/docs` | Interactive FastAPI documentation |
+
+Authentication endpoints include `/api/auth/signup`, `/api/auth/login`, and `/api/auth/me`.
+
+Before normal triage, the backend also applies safety and jurisdiction checks. Crisis signals such as active violence, confinement, or self-harm are routed to emergency guidance instead of being sent through the legal reasoning pipeline.
+
+## Verification
+
+Build the frontend:
 
 ```powershell
-# Root directory
-
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -r backend\requirements.txt
-
-# If Hugging Face compatibility error occurs:
-python -m pip install "huggingface-hub==0.20.3" "transformers==4.35.2"
-
-# Configure .env with GROQ_API_KEY
-
-# Build vector DB if missing:
-python backend\02_chunk_and_embed.py
-
-# Terminal 1
-cd backend
-python api_server.py
-
-# Terminal 2
 cd jurisense-ui
-npm install
-npm run dev
+npm run build
 ```
 
-Then open the Vite URL shown in the terminal.
+Run the RAG evaluation suite:
 
----
+```powershell
+cd ..
+.\.venv\Scripts\python.exe backend\eval_pipeline.py
+```
 
-> **JuriSense is intended for research, education, and AI-assisted legal workflows. Always verify important legal information against authoritative sources and obtain professional legal advice where necessary.**
+Run backend tests:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest backend\tests
+```
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Setup guide](docs/SETUP_GUIDE.md)
+- [API reference](docs/API_REFERENCE.md)
+- [Feature guide](docs/FEATURES.md)
+
+## Security and responsible use
+
+- Keep `.env` and API keys out of version control.
+- Treat generated legal content as a draft until it has been reviewed.
+- Confirm statute names, amendments, limitation periods, jurisdiction, and filing requirements independently.
+- Do not upload confidential documents unless your deployment and data-handling requirements permit it.
+
+## License
+
+See [LICENSE](LICENSE) for the project license.
